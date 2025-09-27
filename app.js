@@ -73,9 +73,9 @@ document.getElementById("check-battery").addEventListener("click", () => {
   showBatteryInfo(battery);
 });
 
-// ----- QR Scanner with Start/Stop -----
-let html5QrCodeScanner;
-let scanning = false;
+// ----- QR Scanner with Camera On/Off -----
+let html5QrCode;
+let cameraOn = false;
 
 function onScanSuccess(decodedText) {
   showBatteryInfo(decodedText.trim());
@@ -85,34 +85,33 @@ function onScanFailure(error) {
   console.warn(`QR scan error: ${error}`);
 }
 
-// Start scan button
-document.getElementById("start-scan").addEventListener("click", () => {
-  if (scanning) return;
-  Html5Qrcode.getCameras().then(cameras => {
-    if (cameras && cameras.length) {
-      scanning = true;
-      let cameraId = cameras[0].id;
-      html5QrCodeScanner = new Html5Qrcode("reader");
-      html5QrCodeScanner.start(
-        cameraId,
-        { fps: 10, qrbox: 250 },
-        onScanSuccess,
-        onScanFailure
-      ).catch(err => {
-        console.error("Failed to start scanning:", err);
-        scanning = false;
-      });
-    }
-  }).catch(err => console.error("Camera error:", err));
-});
-
-// Stop scan button
-document.getElementById("stop-scan").addEventListener("click", () => {
-  if (!scanning || !html5QrCodeScanner) return;
-  html5QrCodeScanner.stop().then(() => {
-    html5QrCodeScanner.clear();
-    scanning = false;
-  }).catch(err => console.error("Failed to stop scanning:", err));
+const cameraToggle = document.getElementById("camera-toggle");
+cameraToggle.addEventListener("click", () => {
+  if (!cameraOn) {
+    // Turn camera on
+    Html5Qrcode.getCameras().then(cameras => {
+      if (cameras && cameras.length) {
+        const cameraId = cameras[0].id;
+        html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start(
+          cameraId,
+          { fps: 10, qrbox: 250 },
+          onScanSuccess,
+          onScanFailure
+        ).then(() => {
+          cameraOn = true;
+          cameraToggle.innerText = "Turn Camera Off";
+        }).catch(err => console.error("Failed to start camera:", err));
+      }
+    }).catch(err => console.error("No camera found:", err));
+  } else {
+    // Turn camera off
+    html5QrCode.stop().then(() => {
+      html5QrCode.clear();
+      cameraOn = false;
+      cameraToggle.innerText = "Turn Camera On";
+    }).catch(err => console.error("Failed to stop camera:", err));
+  }
 });
 
 // ----- Recycling Centers -----
