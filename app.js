@@ -1,14 +1,50 @@
-// ----- Battery data -----
+// ----- Detailed Battery data -----
 const batteries = {
-  "AA": "Recycle at designated collection points. Do not throw in regular trash.",
-  "AAA": "Recycle at designated collection points. Avoid landfills.",
-  "C": "Take to hazardous waste or battery recycling center.",
-  "D": "Dispose at local recycling center or hazardous waste facility.",
-  "18650": "Special lithium-ion batteries. Take to authorized recycler.",
-  "CR2032": "Small button cells. Drop off at battery recycling point."
+  "AA": {
+    type: "Alkaline",
+    recycling: "Recycle at designated collection points. Do not throw in regular trash.",
+    hazards: "Contains small amounts of toxic metals like mercury and cadmium.",
+    lifespan: "Typically lasts 1–2 years in household devices.",
+    tips: "Store in a cool, dry place before disposal."
+  },
+  "AAA": {
+    type: "Alkaline",
+    recycling: "Recycle at designated collection points. Avoid landfills.",
+    hazards: "Contains small amounts of toxic metals.",
+    lifespan: "1–2 years depending on usage.",
+    tips: "Tape terminals before disposal if storing multiple batteries."
+  },
+  "C": {
+    type: "Alkaline",
+    recycling: "Take to hazardous waste or battery recycling center.",
+    hazards: "Contains toxic metals.",
+    lifespan: "2–3 years.",
+    tips: "Do not throw in regular trash."
+  },
+  "D": {
+    type: "Alkaline",
+    recycling: "Dispose at local recycling center or hazardous waste facility.",
+    hazards: "Toxic metals present.",
+    lifespan: "3–5 years.",
+    tips: "Keep away from children and pets."
+  },
+  "18650": {
+    type: "Lithium-ion",
+    recycling: "Special lithium-ion batteries. Take to authorized recycler.",
+    hazards: "Can catch fire if damaged. Contains lithium and other metals.",
+    lifespan: "2–4 years.",
+    tips: "Do not short-circuit terminals."
+  },
+  "CR2032": {
+    type: "Button Cell",
+    recycling: "Small button cells. Drop off at battery recycling point.",
+    hazards: "High risk if swallowed. Contains lithium or silver oxide.",
+    lifespan: "3–5 years.",
+    tips: "Keep out of reach of children."
+  }
 };
 
-// ----- Shared function to display battery info -----
+// ----- Display battery info -----
 function showBatteryInfo(battery) {
   const resultDiv = document.getElementById("result");
 
@@ -17,8 +53,15 @@ function showBatteryInfo(battery) {
     return;
   }
 
-  if (batteries[battery]) {
-    resultDiv.innerHTML = `<b>${battery}</b>: ${batteries[battery]}`;
+  const info = batteries[battery];
+  if (info) {
+    resultDiv.innerHTML = `
+      <b>${battery} (${info.type})</b><br>
+      <b>Recycling:</b> ${info.recycling}<br>
+      <b>Hazards:</b> ${info.hazards}<br>
+      <b>Lifespan:</b> ${info.lifespan}<br>
+      <b>Tips:</b> ${info.tips}
+    `;
   } else {
     resultDiv.innerHTML = `Battery type <b>${battery}</b> not found. Try another.`;
   }
@@ -32,7 +75,6 @@ document.getElementById("check-battery").addEventListener("click", () => {
 
 // ----- QR Code Scanner -----
 function onScanSuccess(decodedText, decodedResult) {
-  // Pass scanned text into lookup
   showBatteryInfo(decodedText.trim());
 }
 
@@ -40,12 +82,19 @@ function onScanFailure(error) {
   console.warn(`QR scan error: ${error}`);
 }
 
-// Create scanner instance
-let html5QrCodeScanner = new Html5QrcodeScanner(
-  "reader",
-  { fps: 10, qrbox: 250 }
-);
-html5QrCodeScanner.render(onScanSuccess, onScanFailure);
+// ----- Automatically start scanner -----
+Html5Qrcode.getCameras().then(cameras => {
+  if (cameras && cameras.length) {
+    let cameraId = cameras[0].id; // first available camera
+    const html5QrCodeScanner = new Html5Qrcode("reader");
+    html5QrCodeScanner.start(
+      cameraId,
+      { fps: 10, qrbox: 250 },
+      onScanSuccess,
+      onScanFailure
+    );
+  }
+});
 
 // ----- Recycling Centers -----
 const centers = {
