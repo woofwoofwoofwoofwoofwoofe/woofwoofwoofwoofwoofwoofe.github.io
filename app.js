@@ -73,7 +73,7 @@ document.getElementById("check-battery").addEventListener("click", () => {
   showBatteryInfo(battery);
 });
 
-// ----- QR Scanner with Camera On/Off -----
+// ----- QR Scanner with Camera On/Off using back camera -----
 let html5QrCode;
 let cameraOn = false;
 
@@ -91,10 +91,13 @@ cameraToggle.addEventListener("click", () => {
     // Turn camera on
     Html5Qrcode.getCameras().then(cameras => {
       if (cameras && cameras.length) {
-        const cameraId = cameras[0].id;
+        // Try to find the back camera
+        let backCamera = cameras.find(cam => cam.label.toLowerCase().includes("back")) 
+                          || cameras[cameras.length - 1]; // fallback
+
         html5QrCode = new Html5Qrcode("reader");
         html5QrCode.start(
-          cameraId,
+          backCamera.id,
           { fps: 10, qrbox: 250 },
           onScanSuccess,
           onScanFailure
