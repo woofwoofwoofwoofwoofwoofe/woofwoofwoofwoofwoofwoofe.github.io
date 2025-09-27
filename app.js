@@ -73,9 +73,21 @@ document.getElementById("check-battery").addEventListener("click", () => {
   showBatteryInfo(battery);
 });
 
-// ----- QR Scanner with Camera On/Off using back camera -----
+// ----- QR Scanner with Camera Picker -----
 let html5QrCode;
 let cameraOn = false;
+const cameraSelect = document.getElementById("camera-select");
+const cameraToggle = document.getElementById("camera-toggle");
+
+// Populate camera dropdown
+Html5Qrcode.getCameras().then(cameras => {
+  cameras.forEach(cam => {
+    const option = document.createElement("option");
+    option.value = cam.id;
+    option.text = cam.label;
+    cameraSelect.appendChild(option);
+  });
+}).catch(err => console.error("Could not get cameras:", err));
 
 function onScanSuccess(decodedText) {
   showBatteryInfo(decodedText.trim());
@@ -85,34 +97,31 @@ function onScanFailure(error) {
   console.warn(`QR scan error: ${error}`);
 }
 
-const cameraToggle = document.getElementById("camera-toggle");
+// Toggle camera on/off
 cameraToggle.addEventListener("click", () => {
   if (!cameraOn) {
-    // Turn camera on
-    Html5Qrcode.getCameras().then(cameras => {
-      if (cameras && cameras.length) {
-        // Try to find the back camera
-        let backCamera = cameras.find(cam => cam.label.toLowerCase().includes("back")) 
-                          || cameras[cameras.length - 1]; // fallback
+    const selectedCameraId = cameraSelect.value;
+    if (!selectedCameraId) {
+      alert("Please select a camera first.");
+      return;
+    }
 
-        html5QrCode = new Html5Qrcode("reader");
-        html5QrCode.start(
-          backCamera.id,
-          { fps: 10, qrbox: 250 },
-          onScanSuccess,
-          onScanFailure
-        ).then(() => {
-          cameraOn = true;
-          cameraToggle.innerText = "Turn Camera Off";
-        }).catch(err => console.error("Failed to start camera:", err));
-      }
-    }).catch(err => console.error("No camera found:", err));
+    html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start(
+      selectedCameraId,
+      { fps: 10, qrbox: 250 },
+      onScanSuccess,
+      onScanFailure
+    ).then(() => {
+      cameraOn = true;
+      cameraToggle.innerText = "Stop Camera";
+    }).catch(err => console.error("Failed to start camera:", err));
+
   } else {
-    // Turn camera off
     html5QrCode.stop().then(() => {
       html5QrCode.clear();
       cameraOn = false;
-      cameraToggle.innerText = "Turn Camera On";
+      cameraToggle.innerText = "Start Camera";
     }).catch(err => console.error("Failed to stop camera:", err));
   }
 });
