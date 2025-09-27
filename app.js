@@ -1,53 +1,51 @@
-// ----- Battery check -----
-document.getElementById("check-battery").addEventListener("click", () => {
-  const battery = document.getElementById("battery-input").value.trim();
+// ----- Battery data -----
+const batteries = {
+  "AA": "Recycle at designated collection points. Do not throw in regular trash.",
+  "AAA": "Recycle at designated collection points. Avoid landfills.",
+  "C": "Take to hazardous waste or battery recycling center.",
+  "D": "Dispose at local recycling center or hazardous waste facility.",
+  "18650": "Special lithium-ion batteries. Take to authorized recycler.",
+  "CR2032": "Small button cells. Drop off at battery recycling point."
+};
+
+// ----- Shared function to display battery info -----
+function showBatteryInfo(battery) {
   const resultDiv = document.getElementById("result");
-  
+
   if (!battery) {
-    resultDiv.innerText = "Please enter a battery type.";
+    resultDiv.innerText = "Please enter or scan a battery type.";
     return;
   }
 
-  // Simple example logic
-  if (battery.toLowerCase().includes("lithium")) {
-    resultDiv.innerText = "Lithium batteries must go to a certified recycler.";
-  } else if (battery.toLowerCase().includes("alkaline")) {
-    resultDiv.innerText = "Alkaline batteries can sometimes be placed in household trash, but recycling is better!";
+  if (batteries[battery]) {
+    resultDiv.innerHTML = `<b>${battery}</b>: ${batteries[battery]}`;
   } else {
-    resultDiv.innerText = `Info not available for "${battery}". Check your local guidelines.`;
+    resultDiv.innerHTML = `Battery type <b>${battery}</b> not found. Try another.`;
   }
+}
+
+// ----- Manual input -----
+document.getElementById("check-battery").addEventListener("click", () => {
+  const battery = document.getElementById("battery-input").value.trim();
+  showBatteryInfo(battery);
 });
 
 // ----- QR Code Scanner -----
 function onScanSuccess(decodedText, decodedResult) {
-  document.getElementById("result").innerText = `Scanned Result: ${decodedText}`;
+  // Pass scanned text into lookup
+  showBatteryInfo(decodedText.trim());
 }
 
 function onScanFailure(error) {
   console.warn(`QR scan error: ${error}`);
 }
 
-let html5QrCodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+// Create scanner instance
+let html5QrCodeScanner = new Html5QrcodeScanner(
+  "reader",
+  { fps: 10, qrbox: 250 }
+);
 html5QrCodeScanner.render(onScanSuccess, onScanFailure);
-
-// ----- Upload QR Code File -----
-document.getElementById("qr-file").addEventListener("change", (e) => {
-  if (e.target.files.length === 0) {
-    return;
-  }
-
-  const file = e.target.files[0];
-  const html5QrCode = new Html5Qrcode("reader");
-
-  html5QrCode.scanFile(file, true)
-    .then(decodedText => {
-      document.getElementById("result").innerText = `Scanned from file: ${decodedText}`;
-    })
-    .catch(err => {
-      document.getElementById("result").innerText = "Unable to read QR code from file.";
-      console.error(err);
-    });
-});
 
 // ----- Recycling Centers -----
 const centers = {

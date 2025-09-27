@@ -1,71 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Battery Recycling Helper</title>
-  <script src="https://unpkg.com/html5-qrcode"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 20px;
-    }
-    #reader {
-      width: 300px;
-      margin: 20px auto;
-    }
-    #result {
-      margin-top: 15px;
-      font-size: 18px;
-      color: green;
-    }
-    #info {
-      margin-top: 20px;
-      padding: 10px;
-      background: #f0f0f0;
-      border-radius: 5px;
-    }
-    input, button, select {
-      margin: 10px;
-      padding: 8px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <!-- QR Code scanner library -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script defer src="app.js"></script>
 </head>
 <body>
-  <h1>Battery Recycling Helper</h1>
+  <h1>🔋 Battery Recycling Helper</h1>
 
-  <!-- Manual input -->
-  <input type="text" id="battery-input" placeholder="Enter battery type">
-  <button id="check-battery">Check Battery</button>
-
-  <!-- QR Scanner -->
-  <h2>Scan QR Code</h2>
-  <div id="reader"></div>
-  <div id="result">Scan a QR code or upload one.</div>
-
-  <!-- Upload QR file -->
-  <input type="file" id="qr-file" accept="image/*">
-
-  <!-- Info box -->
-  <div id="info">
-    Batteries contain harmful chemicals. Proper disposal keeps the environment safe.
+  <!-- Input section -->
+  <div>
+    <input type="text" id="battery-input" placeholder="Enter battery type (e.g., AA)" />
+    <button id="check-battery">Check Battery</button>
   </div>
 
-  <!-- Recycling center lookup -->
+  <!-- QR Scanner section -->
+  <h2>Scan a Battery QR Code</h2>
+  <div id="reader" style="width:300px; margin: 10px 0;"></div>
+
+  <!-- Results -->
+  <h2>Result:</h2>
+  <div id="result" style="border:1px solid #ccc; padding:10px; min-height:40px;">
+    Waiting for input or scan...
+  </div>
+
+  <!-- Info box -->
+  <div id="info" style="margin-top:20px; padding:10px; background:#f0f8ff;">
+    ℹ️ Batteries contain harmful chemicals. Proper disposal keeps the environment safe.
+  </div>
+
+  <!-- Recycling centers -->
   <h2>Find Nearest Recycling Center</h2>
   <select id="city">
-    <option value="">Select a city</option>
+    <option value="">-- Select a city --</option>
     <option value="Phoenix">Phoenix</option>
     <option value="Tucson">Tucson</option>
     <option value="Mesa">Mesa</option>
     <option value="Tempe">Tempe</option>
     <option value="Flagstaff">Flagstaff</option>
   </select>
-  <button id="find-location">Find Center</button>
-  <div id="location-result"></div>
+  <button id="find-location">Find Location</button>
 
-  <!-- Load your app.js -->
-  <script src="app.js"></script>
+  <div id="location-result" style="margin-top:10px; font-weight:bold;"></div>
 </body>
 </html>
