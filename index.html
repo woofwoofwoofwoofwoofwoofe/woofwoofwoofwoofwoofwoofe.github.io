@@ -9,17 +9,19 @@
   <script defer src="app.js"></script>
 </head>
 <body>
-  <h1> Battery Recycling Helper</h1>
+  <h1>🔋 Battery Recycling Helper</h1>
 
-  <!-- Input section -->
+  <!-- Manual input -->
   <div>
     <input type="text" id="battery-input" placeholder="Enter battery type (e.g., AA)" />
     <button id="check-battery">Check Battery</button>
   </div>
 
-  <!-- QR Scanner section -->
+  <!-- QR Scanner -->
   <h2>Scan a Battery QR Code</h2>
   <div id="reader" style="width:300px; margin: 10px 0;"></div>
+  <button id="start-scan">Start Scan</button>
+  <button id="stop-scan">Stop Scan</button>
 
   <!-- Results -->
   <h2>Battery Info:</h2>

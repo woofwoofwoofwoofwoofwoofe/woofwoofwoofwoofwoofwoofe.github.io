@@ -73,8 +73,11 @@ document.getElementById("check-battery").addEventListener("click", () => {
   showBatteryInfo(battery);
 });
 
-// ----- QR Code Scanner -----
-function onScanSuccess(decodedText, decodedResult) {
+// ----- QR Scanner with Start/Stop -----
+let html5QrCodeScanner;
+let scanning = false;
+
+function onScanSuccess(decodedText) {
   showBatteryInfo(decodedText.trim());
 }
 
@@ -82,18 +85,34 @@ function onScanFailure(error) {
   console.warn(`QR scan error: ${error}`);
 }
 
-// ----- Automatically start scanner -----
-Html5Qrcode.getCameras().then(cameras => {
-  if (cameras && cameras.length) {
-    let cameraId = cameras[0].id; // first available camera
-    const html5QrCodeScanner = new Html5Qrcode("reader");
-    html5QrCodeScanner.start(
-      cameraId,
-      { fps: 10, qrbox: 250 },
-      onScanSuccess,
-      onScanFailure
-    );
-  }
+// Start scan button
+document.getElementById("start-scan").addEventListener("click", () => {
+  if (scanning) return;
+  Html5Qrcode.getCameras().then(cameras => {
+    if (cameras && cameras.length) {
+      scanning = true;
+      let cameraId = cameras[0].id;
+      html5QrCodeScanner = new Html5Qrcode("reader");
+      html5QrCodeScanner.start(
+        cameraId,
+        { fps: 10, qrbox: 250 },
+        onScanSuccess,
+        onScanFailure
+      ).catch(err => {
+        console.error("Failed to start scanning:", err);
+        scanning = false;
+      });
+    }
+  }).catch(err => console.error("Camera error:", err));
+});
+
+// Stop scan button
+document.getElementById("stop-scan").addEventListener("click", () => {
+  if (!scanning || !html5QrCodeScanner) return;
+  html5QrCodeScanner.stop().then(() => {
+    html5QrCodeScanner.clear();
+    scanning = false;
+  }).catch(err => console.error("Failed to stop scanning:", err));
 });
 
 // ----- Recycling Centers -----
