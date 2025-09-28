@@ -101,23 +101,26 @@ input[type="text"], input[type="number"], input[type="email"] {
 
 .recycling-section {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px; /* smaller gap moves image closer to the left */
-  margin-top: 20px;
+  flex-direction: column; /* stacks image above text */    /* centers everything horizontally */
+  gap: 15px;              /* space between image and text */
+  margin: 20px 0;
 }
 
-
-.recycling-info {
-  flex: 1; /* take available space */
+.recycling-image {
+  text-align: center; /* centers only the image */
+  margin-bottom: 10px; /* optional spacing between image and text */
 }
 
 .recycling-image img {
-  width: 200px; /* adjust size as needed */
+  max-width: 300px; /* adjust size */
+  border-radius: 15px;
   height: auto;
-  margin-left: -20px;
-  border-radius: 5px;
 }
+
+.recycling-info {
+  width: 100%;            /* or set a max-width if you like */
+}
+
 
 
 button:hover {
