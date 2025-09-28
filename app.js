@@ -32,7 +32,7 @@ const batteries = {
     recycling: "Take to hazardous waste or battery recycling center.",
     hazards: "Contains toxic metals.",
     voltage: "1.50 Volts",
-    capacity: "~8000 mAh",
+    capacity: "~3,600 mAh",
     temp: "0°C – 60°C",
     tips: "Do not throw in regular trash."
   },
@@ -41,7 +41,7 @@ const batteries = {
     recycling: "Dispose at local recycling center or hazardous waste facility.",
     hazards: "Toxic metals present.",
     voltage: "1.50 Volts",
-    capacity: "~12000 mAh",
+    capacity: "~10,000 mAh",
     temp: "0°C – 60°C",
     tips: "Keep away from children and pets."
   },
@@ -174,7 +174,7 @@ const centers = {
       url: "https://www.call2recycle.org/locator/?q=Flagstaff"
     }
   ],
-  "Other": [
+  "Near Me": [
     {
         name: "Search through google maps",
         url: "https://www.google.com/maps/search/battery+recycling+near+me"
