@@ -75,7 +75,7 @@ button {
 }
 
 #battery-input {
-  width: 400px;   /* increase to make it longer */
+  width: 150px;   /* increase to make it longer */
   padding: 8px;
   font-size: 16px;
 }
@@ -90,7 +90,7 @@ input[type="text"], input[type="number"], input[type="email"] {
 }
 
 #city {
-  width: 300px;     /* makes the dropdown wider */
+  width: 150px;     /* makes the dropdown wider */
   padding: 8px;     /* increases the height and space inside */
   font-size: 16px;  /* makes the text bigger */
 }
