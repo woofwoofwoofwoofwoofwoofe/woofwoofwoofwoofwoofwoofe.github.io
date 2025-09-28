@@ -2,7 +2,7 @@
 const batteries = {
   "Alkaline AA": {
     type: "Alkaline",
-    recycling: "Recycle at designated collection points. Do not throw in regular trash.",
+    recycling: "Can be safely put in house hold trash. However, it can be recycled at some reclamation companies!",
     hazards: "Contains small amounts of toxic metals like mercury and cadmium.",
     voltage: "1.50 Volts",
     capacity: "~2500 mAh",
@@ -56,12 +56,21 @@ const batteries = {
   },
   "CR2032": {
     type: "Button Cell",
-    recycling: "Small button cells. Throw them away out of reach of children.",
+    recycling: "Bring to specialized battery recyclers or some retailers.",
     hazards: "High risk if swallowed. Contains lithium or silver oxide.",
     voltage: "3 Volts",
     capacity: "235 mAh",
     temp: "0°C – 60°C",
     tips: "Place in a plastic bag, and cover batteries in electrical tape as an extra safety precaution."
+  },
+  "Li-Ion": {
+    type: "Rechargable Lithium-Ion",
+    recycling: "If removable, bring to authorized recycler. If non-removable, the entire device should be brought to an authorized recycler.",
+    hazards: "Do NOT throw away in normal trash. It is a health hazard and a fire hazard.",
+    voltage: "Depends on Battery Size (more information to come soon)",
+    capacity: "Depends on Battery Size (more information to come soon)",
+    temp: "Depends on Battery Size (more information to come soon)",
+    tips: "Place each battery in a seperate bag and place electrical tape of the battery terminals."
   }
 };
 
@@ -74,7 +83,9 @@ const batteryMap = {
   "C": "C",
   "D": "D",
   "18650": "18650",
-  "CR2032": "CR2032"
+  "CR2032": "CR2032",
+  "Lithium Ion": "Li-Ion",
+  "Li-Ion": "Li-Ion"
 };
 
 // ----- Display battery info -----
@@ -100,8 +111,12 @@ function showBatteryInfo(battery) {
       <b>Tips:</b> ${info.tips}
     `;
   } else {
-    resultDiv.innerHTML = `Battery type <b>${battery}</b> not found. Try another.`;
-  }
+  resultDiv.innerHTML = `Battery type <b>${battery}</b> not found. Try another. 
+    If your battery was not listed, please visit this website: 
+    <a href="https://www.epa.gov/recycle/used-household-batteries" target="_blank">
+      EPA Battery Recycling Guide
+    </a>`;
+}
 }
 
 // ----- Manual input -----
