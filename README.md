@@ -36,14 +36,23 @@ script.js – Logic for battery info, QR scanning, and recycling centers
 Works Cited
 
 https://www.microbattery.com/blog/post/battery-bios:-everything-you-need-to-know-about-the-aa-battery/
+
 https://www.fenixlighting.com/blogs/news/the-ultimate-guide-to-the-18650-battery?srsltid=AfmBOopPq7EhjXGZTI8FGuHddwOfKp3u6N21trL_GK8a8kTB1TvZvgjw
+
 https://greenecofriend.co.uk/recycling/
+
 https://www.batteryrecyclersofamerica.com/battery-recycling-phoenix/?srsltid=AfmBOoqxUnj3_4sXTjMMUA0qfwbufoFQ63jq7X2Sb2KXhfNycUNbWYum
+
 https://www.call2recycle.org/locator/
+
 https://risk-safety.utdallas.edu/environmental-programs/hazardous-waste/battery-faq/
+
 https://www.hightechrecyclingmi.com/guide-to-recycling-batteries-lithium-ion-household-car-batteries/
+
 https://batteryspecialists.com.au/blogs/news/the-complete-guide-to-c-batteries?srsltid=AfmBOop_VfrCnqh_3mKO5qizIYNzSU_Ep1KnGffuIEq4C4Q6meIUHUvS
+
 https://uk.rs-online.com/web/content/discovery/ideas-and-advice/d-batteries-guide
+
 https://www.epa.gov/recycle/used-household-batteries
 
 Author
