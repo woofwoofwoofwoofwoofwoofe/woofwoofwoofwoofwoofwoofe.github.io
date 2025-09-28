@@ -15,12 +15,19 @@
   margin-top: 20px;
 }
 
-.info-box {
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 20px;
-  flex: 2; /* takes more space */
+#info {
+  font-size: 18px;   /* bigger text */
+  line-height: 1.6;  /* spacing between lines */
 }
+
+.info-box {
+  background: #f0f8ff;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;  /* increase this value to make text bigger */
+  line-height: 1.6; /* optional, makes text easier to read */
+}
+
 
 .info-image-box img {
   width: 180px;  /* adjust size */
@@ -29,7 +36,7 @@
 }
 
 .info-block {
-  text-align: center; /* centers everything */
+  /*text-align: center; /* centers everything */
   margin: 20px 0;
 }
 
@@ -107,7 +114,7 @@ input[type="text"], input[type="number"], input[type="email"] {
 }
 
 .recycling-image {
-  text-align: center; /* centers only the image */
+  /*text-align: center; /* centers only the image */
   margin-bottom: 10px; /* optional spacing between image and text */
 }
 
@@ -129,7 +136,7 @@ button:hover {
 footer {
   margin-top: 15px;
   padding: 5px;
-  background-color: #f0f8ff;
+  background-color: #a4efa9;
   /* border-top: 2px solid #ffffff; */
   text-align: center;
 }

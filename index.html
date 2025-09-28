@@ -8,10 +8,46 @@
   <script defer src="app.js"></script>
 </head>
 <body>
-  <h1 id="page-title">Battery Recycling: Why, What, and Where?</h1>
+  <h1 id="page-title">Battery Recycling: What, Where, and Why?</h1>
+
+  <!-- Results -->
+  <h2>What? Battery Info:</h2>
+  <div id="result" style="border:1px solid #ffffff; padding:10px; min-height:100px;">
+    Waiting for input...
+  </div>
+
+  <h2>Enter the Battery You Wish To Search For (Alkaline AA, Lithium AA, AAA, C, D, 18650, CR2032):</h2>
+
+  <!-- Manual input -->
+  <div>
+    <input type="text" id="battery-input" placeholder="Enter battery type (e.g., AA)" />
+    <button id="check-battery">Check Battery</button>
+  </div>
+
+  <!-- Recycling centers -->
+<div class="recycling-section">
+  <div class="recycling-image">
+    <img src="recycling.png" alt="Recycle" />
+  </div>
+
+  <div class="recycling-info">
+    <h2>Where? Nearest Recycling Center</h2>
+    <select id="city">
+      <option value="">Select a city</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="Tucson">Tucson</option>
+      <option value="Mesa">Mesa</option>
+      <option value="Tempe">Tempe</option>
+      <option value="Flagstaff">Flagstaff</option>
+      <option value="Other">Other</option>
+    </select>
+    <button id="find-location">Find Nearest Recycling Center</button>
+    <div id="location-result"></div>
+  </div>
+</div>
 
   <!-- Info box -->
-<h2>Why should I recycle my batteries?</h2>
+<h2>Why? Why should I recycle my batteries?</h2>
 <div class="info-block">
   <p>
     Recycling batteries is becoming increasingly 
@@ -26,43 +62,6 @@
   <img src="battery_bucket.png" alt="Bucket of Batteries">
 </div>
 
-
-
-  <h2>Enter the Battery You Wish To Search For (Alkaline AA, Lithium AA, AAA, C, D, 18650, CR2032):</h2>
-
-  <!-- Manual input -->
-  <div>
-    <input type="text" id="battery-input" placeholder="Enter battery type (e.g., AA)" />
-    <button id="check-battery">Check Battery</button>
-  </div>
-
-  <!-- Results -->
-  <h2>Battery Info:</h2>
-  <div id="result" style="border:1px solid #ffffff; padding:10px; min-height:100px;">
-    Waiting for input...
-  </div>
-
-  <!-- Recycling centers -->
-<div class="recycling-section">
-  <div class="recycling-image">
-    <img src="recycling.png" alt="Recycle" />
-  </div>
-
-  <div class="recycling-info">
-    <h2>Nearest Recycling Center</h2>
-    <select id="city">
-      <option value="">Select a city</option>
-      <option value="Phoenix">Phoenix</option>
-      <option value="Tucson">Tucson</option>
-      <option value="Mesa">Mesa</option>
-      <option value="Tempe">Tempe</option>
-      <option value="Flagstaff">Flagstaff</option>
-      <option value="Other">Other</option>
-    </select>
-    <button id="find-location">Find Nearest Recycling Center</button>
-    <div id="location-result"></div>
-  </div>
-</div>
 
 <h2>What happens if I don’t recycle?</h2>
 <div class="info-container">
