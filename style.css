@@ -21,7 +21,7 @@
 }
 
 .info-box {
-  background: #dde2e7;
+  background: #ffffff;
   padding: 15px;
   border-radius: 8px;
   font-size: 18px;  /* increase this value to make text bigger */
@@ -47,7 +47,7 @@
 }
 
 .info-block p {
-  background: #dde2e7;
+  background: #ffffff;
   padding: 15px;
   border-radius: 8px;
   font-size: 16px;
@@ -67,7 +67,7 @@ button, input, select, textarea {
 
 button {
   background-color: #0077cc;
-  color: #dde2e7;
+  color: #ffffff;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
@@ -81,7 +81,7 @@ button {
 }
 
 input[type="text"], input[type="number"], input[type="email"] {
-  background-color: #dde2e7;
+  background-color: #ffffff;
   color: black;
   border: 2px solid #ccc;
   padding: 8px;
@@ -95,7 +95,7 @@ input[type="text"], input[type="number"], input[type="email"] {
   font-size: 16px;  /* makes the text bigger */
   #city {
   color: darkgreen;     /* changes the text color of the selected value */
-  background-color: #dde2e7; /* optional: background color of the dropdown */
+  background-color: #ffffff; /* optional: background color of the dropdown */
   padding: 8px;
   font-size: 16px;
   border-radius: 5px;
@@ -106,18 +106,18 @@ input[type="text"], input[type="number"], input[type="email"] {
 /* Optional: change the color of the dropdown options in some browsers */
 #city option {
   color: rgb(0, 0, 0);        /* text color of each option */
-  background-color: #dde2e7; /* background of each option */
+  background-color: #ffffff; /* background of each option */
 }
 
 #result {
-  background-color: #dde2e7;       /* white interior */
+  background-color: #ffffff;       /* white interior */
   color: black;                  /* text color */
   padding: 15px;                 /* space inside the box */
-  border: 2px solid #ccc;        /* optional: border color */
+  border: 2px solid #ffffff;        /* optional: border color */
   border-radius: 8px;            /* rounded corners */
   font-family: "Helvetica", Arial, sans-serif; /* keep font consistent */
   margin-top: 15px;              /* space above the box */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
+  /*box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
 }
 
 .recycling-section {
