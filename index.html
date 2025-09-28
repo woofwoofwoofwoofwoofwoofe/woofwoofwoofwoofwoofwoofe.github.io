@@ -8,20 +8,12 @@
   <script defer src="app.js"></script>
 </head>
 <body>
-  <h1>🔋 Battery Recycling Helper</h1>
+  <h1 id="page-title">Battery Recycling: What and Where?</h1>
 
-<div id="supported-batteries">
-  <h3>Supported Batteries:</h3>
-  <ul>
-    <li>AA</li>
-    <li>Alkaline AA</li>
-    <li>Lithium AA</li>
-    <li>AAA</li>
-    <li>C</li>
-    <li>D</li>
-    <li>18650</li>
-    <li>CR2032</li>
-  </ul>
+  <h2>Enter the Battery You Wish To Search For:</h2>
+
+  <div id="supported-batteries">
+  <h3>Supported Batteries: Alkaline AA, Lithium AA, AAA, C, D, 18650, CR2032</h3>
 </div>
 
   <!-- Manual input -->
@@ -32,7 +24,7 @@
 
   <!-- Results -->
   <h2>Battery Info:</h2>
-  <div id="result" style="border:1px solid #ccc; padding:10px; min-height:100px;">
+  <div id="result" style="border:1px solid #ffffff; padding:10px; min-height:100px;">
     Waiting for input
   </div>
 
@@ -42,18 +34,26 @@
   </div>
 
   <!-- Recycling centers -->
-  <h2>Find Nearest Recycling Center</h2>
-  <select id="city">
-    <option value="">-- Select a city --</option>
-    <option value="Phoenix">Phoenix</option>
-    <option value="Tucson">Tucson</option>
-    <option value="Mesa">Mesa</option>
-    <option value="Tempe">Tempe</option>
-    <option value="Flagstaff">Flagstaff</option>
-  </select>
-  <button id="find-location">Find Location</button>
+<div class="recycling-section">
+  <div class="recycling-info">
+    <h2>Nearest Recycling Center</h2>
+    <select id="city">
+      <option value="">Select a city</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="Tucson">Tucson</option>
+      <option value="Mesa">Mesa</option>
+      <option value="Tempe">Tempe</option>
+      <option value="Flagstaff">Flagstaff</option>
+    </select>
+    <button id="find-location">Find nearest recycling center</button>
+    <div id="location-result"></div>
+  </div>
 
-  <div id="location-result" style="margin-top:10px; font-weight:bold;"></div>
+  <div class="recycling-image">
+    <img src="recycling.png" alt="Recycle" />
+  </div>
+</div>
+
 
   <!-- Works Cited -->
   <footer>
@@ -62,7 +62,7 @@
       <li><a href="https://www.microbattery.com/blog/post/battery-bios:-everything-you-need-to-know-about-the-aa-battery/" target="_blank">Microbattery</a></li>
       <li><a href="https://www.microbattery.com/blog/post/battery-bios:-everything-you-need-to-know-about-the-cr2032-battery/" target="_blank">Microbattery</a></li>
       <li><a href="https://www.fenixlighting.com/blogs/news/the-ultimate-guide-to-the-18650-battery?srsltid=AfmBOopPq7EhjXGZTI8FGuHddwOfKp3u6N21trL_GK8a8kTB1TvZvgjw" target="_blank">Fenix Lighting</a></li>
-      <li><a href="https://www.example3.com" target="_blank">Example Website 4</a></li>
+      <li><a href="https://greenecofriend.co.uk/recycling/" target="_blank">Recycling Image</a></li>
       <li><a href="https://www.example3.com" target="_blank">Example Website 5</a></li>
     </ul>
   </footer>

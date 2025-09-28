@@ -1,7 +1,22 @@
+
+#page-title {
+  background-color: #063207; /* green background */
+  color: rgb(255, 255, 255);             /* text color */
+  padding: 15px;            /* space inside the box */
+  border-radius: 10px;      /* optional: rounded corners */
+  text-align: center;       /* center the text */
+  font-family: "Helvetica", "Arial", sans-serif; /* ensure it stays Helvetica */
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e6f2ff;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #9ac2a2;
   color: #003366;
+}
+
+h1, h2, h3, h4, h5, h6,
+button, input, select, textarea {
+  font-family: "Helvetica", "Arial", sans-serif;
 }
 
 button {
@@ -12,6 +27,46 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+input[type="text"], input[type="number"], input[type="email"] {
+  background-color: white;
+  color: black;
+  border: 2px solid #ccc;
+  padding: 8px;
+  border-radius: 5px;
+  font-family: "Helvetica", Arial, sans-serif;
+}
+
+#result {
+  background-color: white;       /* white interior */
+  color: black;                  /* text color */
+  padding: 15px;                 /* space inside the box */
+  border: 2px solid #ccc;        /* optional: border color */
+  border-radius: 8px;            /* rounded corners */
+  font-family: "Helvetica", Arial, sans-serif; /* keep font consistent */
+  margin-top: 15px;              /* space above the box */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* optional: subtle shadow */
+}
+
+.recycling-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px; /* smaller gap moves image closer to the left */
+  margin-top: 20px;
+}
+
+
+.recycling-info {
+  flex: 1; /* take available space */
+}
+
+.recycling-image img {
+  width: 200px; /* adjust size as needed */
+  height: auto;
+  margin-left: -20px;
+}
+
 
 button:hover {
   background-color: #005fa3;
