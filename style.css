@@ -25,7 +25,26 @@
 .info-image-box img {
   width: 180px;  /* adjust size */
   height: auto;
+  border-radius: 15px;
+}
+
+.info-block {
+  text-align: center; /* centers everything */
+  margin: 20px 0;
+}
+
+.info-block img {
+  max-width: 200px;  /* keeps image from being too large */
+  margin: 3px 0;
+  border-radius: 15px;
+}
+
+.info-block p {
+  background: #f0f8ff;
+  padding: 15px;
   border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 body {
