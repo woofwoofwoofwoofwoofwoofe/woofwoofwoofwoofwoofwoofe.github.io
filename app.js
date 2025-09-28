@@ -7,7 +7,7 @@ const batteries = {
     voltage: "1.50 Volts",
     capacity: "~2500 mAh",
     temp: "0°C – 60°C",
-    tips: "Store in a cool, dry place before disposal."
+    tips: "Place non-conductive tape on the terminals. Seperate different batteries into individual plastic bags."
   },
   "Lithium AA": {
     type: "Lithium",
@@ -52,16 +52,16 @@ const batteries = {
     voltage: "3.6 Volts",
     capacity: "2600 mAh",
     temp: "20°C – 50°C",
-    tips: "Remove batteries from device before long-term storage."
+    tips: "Cover the terminals with electrical tape. Put in plastic bag. P.S.: Remove batteries from devices before long-term storage."
   },
   "CR2032": {
     type: "Button Cell",
-    recycling: "Small button cells. Drop off at battery recycling point.",
+    recycling: "Small button cells. Throw them away out of reach of children.",
     hazards: "High risk if swallowed. Contains lithium or silver oxide.",
     voltage: "3 Volts",
     capacity: "235 mAh",
     temp: "0°C – 60°C",
-    tips: "Keep out of reach of children."
+    tips: "Place in a plastic bag, and cover batteries in electrical tape as an extra safety precaution."
   }
 };
 
@@ -124,11 +124,66 @@ window.onload = getBatteryFromURL;
 
 // ----- Recycling Centers -----
 const centers = {
-  "Phoenix": "City of Phoenix Household Hazardous Waste Facility",
-  "Tucson": "Los Reales Landfill - HHW Program",
-  "Mesa": "Mesa Household Hazardous Materials Facility",
-  "Tempe": "Tempe Household Products Collection Center",
-  "Flagstaff": "Flagstaff Hazardous Products Center"
+  "Phoenix": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+Phoenix"
+    },
+    {
+      name: "All recycling options (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/?q=Phoenix"
+    },
+  ],
+  "Tucson": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+Tucson"
+    },
+    {
+      name: "All Recycling options (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/?q=Tucson"
+    },
+  ],
+  "Mesa": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+Mesa"
+    },
+    {
+      name: "All Recycling options (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/?q=Mesa"
+    }
+  ],
+  "Tempe": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+Tempe"
+    },
+    {
+      name: "All Recycling options (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/?q=Tempe"
+    }
+  ],
+  "Flagstaff": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+Flagstaff"
+    },
+    {
+      name: "All Recycling options (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/?q=Flagstaff"
+    }
+  ],
+  "Other": [
+    {
+        name: "Search through google maps",
+        url: "https://www.google.com/maps/search/battery+recycling+near+me"
+    },
+    {
+      name: "All locations across the U.S. (Call2Recycle)",
+      url: "https://www.call2recycle.org/locator/"
+    }
+  ]
 };
 
 document.getElementById("find-location").addEventListener("click", () => {
@@ -136,9 +191,20 @@ document.getElementById("find-location").addEventListener("click", () => {
   const locationDiv = document.getElementById("location-result");
 
   if (!city) {
-    locationDiv.innerText = "Please select a city.";
+    locationDiv.innerHTML = "Please select a city.";
     return;
   }
 
-  locationDiv.innerText = `Nearest Recycling Center: ${centers[city]}`;
+  const cityCenters = centers[city];
+
+  if (!cityCenters || cityCenters.length === 0) {
+    locationDiv.innerHTML = "No recycling centers found for this city.";
+    return;
+  }
+
+  // Display all locations as clickable links
+  locationDiv.innerHTML = cityCenters
+    .map(center => `<a href="${center.url}" target="_blank">${center.name}</a>`)
+    .join("<br>");
 });
+
