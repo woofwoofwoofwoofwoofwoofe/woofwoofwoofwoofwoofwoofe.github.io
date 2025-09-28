@@ -73,58 +73,17 @@ document.getElementById("check-battery").addEventListener("click", () => {
   showBatteryInfo(battery);
 });
 
-// ----- QR Scanner with Camera Picker -----
-let html5QrCode;
-let cameraOn = false;
-const cameraSelect = document.getElementById("camera-select");
-const cameraToggle = document.getElementById("camera-toggle");
-
-// Populate camera dropdown
-Html5Qrcode.getCameras().then(cameras => {
-  cameras.forEach(cam => {
-    const option = document.createElement("option");
-    option.value = cam.id;
-    option.text = cam.label;
-    cameraSelect.appendChild(option);
-  });
-}).catch(err => console.error("Could not get cameras:", err));
-
-function onScanSuccess(decodedText) {
-  showBatteryInfo(decodedText.trim());
-}
-
-function onScanFailure(error) {
-  console.warn(`QR scan error: ${error}`);
-}
-
-// Toggle camera on/off
-cameraToggle.addEventListener("click", () => {
-  if (!cameraOn) {
-    const selectedCameraId = cameraSelect.value;
-    if (!selectedCameraId) {
-      alert("Please select a camera first.");
-      return;
-    }
-
-    html5QrCode = new Html5Qrcode("reader");
-    html5QrCode.start(
-      selectedCameraId,
-      { fps: 10, qrbox: 250 },
-      onScanSuccess,
-      onScanFailure
-    ).then(() => {
-      cameraOn = true;
-      cameraToggle.innerText = "Stop Camera";
-    }).catch(err => console.error("Failed to start camera:", err));
-
-  } else {
-    html5QrCode.stop().then(() => {
-      html5QrCode.clear();
-      cameraOn = false;
-      cameraToggle.innerText = "Start Camera";
-    }).catch(err => console.error("Failed to stop camera:", err));
+// ----- URL Parameter Handling (for QR code links) -----
+function getBatteryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const batteryType = params.get("battery");
+  if (batteryType) {
+    showBatteryInfo(batteryType.trim());
   }
-});
+}
+
+// Run on page load
+window.onload = getBatteryFromURL;
 
 // ----- Recycling Centers -----
 const centers = {

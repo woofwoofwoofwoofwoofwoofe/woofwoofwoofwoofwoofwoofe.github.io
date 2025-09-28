@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Battery Recycling Helper</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
@@ -17,17 +16,10 @@
     <button id="check-battery">Check Battery</button>
   </div>
 
-  <!-- QR Scanner -->
-  <h2>Scan a Battery QR Code</h2>
-  <label for="camera-select">Choose Camera:</label>
-  <select id="camera-select"></select>
-  <button id="camera-toggle">Start Camera</button>
-  <div id="reader" style="width:300px; margin: 10px 0;"></div>
-
   <!-- Results -->
   <h2>Battery Info:</h2>
   <div id="result" style="border:1px solid #ccc; padding:10px; min-height:100px;">
-    Waiting for input or scan...
+    Waiting for input or QR code scan...
   </div>
 
   <!-- Info box -->
@@ -48,5 +40,15 @@
   <button id="find-location">Find Location</button>
 
   <div id="location-result" style="margin-top:10px; font-weight:bold;"></div>
+
+  <!-- Works Cited -->
+  <footer>
+    <h2>Works Cited</h2>
+    <ul>
+      <li><a href="https://www.example1.com" target="_blank">Example Website 1</a></li>
+      <li><a href="https://www.example2.com" target="_blank">Example Website 2</a></li>
+      <li><a href="https://www.example3.com" target="_blank">Example Website 3</a></li>
+    </ul>
+  </footer>
 </body>
 </html>
